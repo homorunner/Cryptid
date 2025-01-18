@@ -474,8 +474,8 @@ return {
 			bl_cry_lavender_loop = {
 				name = "薰衣草环",
 				text = {
-					"在boss回合中每经过1.5秒",
-					"盲注要求增加1.25倍"
+					"在boss回合中每经过两秒",
+					"盲注要求增加1.1倍"
 				}
 			},
 			bl_cry_magic = {
@@ -1525,8 +1525,8 @@ return {
 				name = "快乐之家",
 				text = {
 					"{X:dark_edition,C:white}^#1#{} 倍率当",
-					" {C:attention}114{} 次出牌{}后",
-					"{C:inactive}(当前 #2#/114){}",
+					" {C:attention}16{} 次出牌{}后",
+					"{C:inactive}(当前 #2#/16){}",
 					"{C:inactive,s:0.8}没有地方能比得上家!{}"
 				}
 			},

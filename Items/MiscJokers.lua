@@ -88,7 +88,7 @@ local happyhouse = {
 	key = "happyhouse",
 	pos = { x = 2, y = 4 },
 	order = 2,
-	config = { extra = { mult = 4, check = 0 } },
+	config = { extra = { mult = 2, check = 0 } },
 	immutable = true,
     pools = {["Meme"] = true},
 	rarity = 2,
@@ -107,7 +107,7 @@ local happyhouse = {
 		then
 			card.ability.extra.check = card.ability.extra.check + 1
 			if
-				card.ability.extra.check == 114
+				card.ability.extra.check == 16
 				and G.GAME.round_resets.ante < 8
 				and not (
 					G.GAME.selected_back.effect.center.key == "antimatter"
@@ -116,10 +116,10 @@ local happyhouse = {
 			then --Yes, the cut off point is boss blind Ante 7. I'm evil >:3.
 				check_for_unlock({ type = "home_realtor" })
 			end
-			if card.ability.extra.check < 114 then --Hardcoded, dont want misprint to mess with this hehe
+			if card.ability.extra.check < 16 then --Hardcoded, dont want misprint to mess with this hehe
 				return {
 					card_eval_status_text(card, "extra", nil, nil, nil, {
-						message = card.ability.extra.check .. "/114",
+						message = card.ability.extra.check .. "/16",
 						colour = G.C.DARK_EDITION,
 					}),
 				}
@@ -128,7 +128,7 @@ local happyhouse = {
 		if
 			context.cardarea == G.jokers
 			and (to_big(card.ability.extra.mult) > to_big(1))
-			and card.ability.extra.check > 113
+			and card.ability.extra.check > 15
 			and not context.before
 			and not context.after
 		then

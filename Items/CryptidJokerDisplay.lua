@@ -284,10 +284,10 @@ if JokerDisplay then
 		reminder_text = {
 			{ text = "(" },
 			{ ref_table = "card.ability.extra", ref_value = "check" },
-			{ text = "/114)" },
+			{ text = "/16)" },
 		},
 		calc_function = function(card)
-			card.joker_display_values.e_mult = card.ability.extra.check >= 114 and card.ability.extra.mult or 1
+			card.joker_display_values.e_mult = card.ability.extra.check >= 16 and card.ability.extra.mult or 1
 		end,
 	}
 	JokerDisplay.Definitions["j_cry_bubblem"] = {

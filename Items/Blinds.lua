@@ -378,9 +378,9 @@ local joke = {
 	loc_vars = function(self)
 		return { vars = { G.GAME.win_ante or 8, (G.GAME.win_ante and G.GAME.round_resets.ante) and math.floor(G.GAME.round_resets.ante + (G.GAME.win_ante - G.GAME.round_resets.ante % G.GAME.win_ante)) or 8 } }
 	end,
-        collection_loc_vars = function(self)
-            return { vars = { '8', localize('cry_joke_placeholder') }}
-        end,
+	collection_loc_vars = function(self)
+		return { vars = { '8', localize('cry_joke_placeholder') }}
+	end,
 	cry_calc_ante_gain = function(self)
 		if to_big(G.GAME.chips) >= to_big(G.GAME.blind.chips) * 2 then
 			if G.GAME.round_resets.ante == 1 then
@@ -608,7 +608,7 @@ local lavender_loop = {
 		elseif G.GAME.current_round.hands_played == 0 then
 			G.GAME.cry_ach_conditions.patience_virtue_earnable = true
 		end
-		return 1.25 ^ (dt / 1.5)
+		return 1.1 ^ (dt / 2)
 	end,
 }
 local tornado = {
