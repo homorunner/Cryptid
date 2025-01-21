@@ -417,7 +417,7 @@ function cry_bonusvouchermod(mod)
 					card.misprint_cost_fac = (card.misprint_cost_fac or 1) * 2
 					card:set_cost()
 				end
-				if G.GAME.modifiers.cry_enable_flipped_in_shop and pseudorandom('cry_flip_vouch'..G.GAME.round_resets.ante) > 0.7 then
+				if G.GAME.modifiers.cry_enable_flipped_in_shop and pseudorandom('cry_flip_vouch'..G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate then
 					card.cry_flipped = true
 				end
 				create_shop_card_ui(card, 'Voucher', G.shop_vouchers)
@@ -531,13 +531,13 @@ function cry_get_next_voucher_stickers()
 	if G.GAME.modifiers.enable_perishables_in_shop and G.GAME.modifiers.cry_any_stickers then -- bloated as shit
 		if
 			not G.GAME.modifiers.cry_eternal_perishable_compat
-			and ((eternal_perishable_poll > 0.4) and (eternal_perishable_poll <= 0.7))
+			and ((eternal_perishable_poll > Cryptid_config.StickerOccurRate) and (eternal_perishable_poll <= Cryptid_config.StickerOccurRate * 2))
 		then
 			ret.perishable = true
 		end
 		if
 			G.GAME.modifiers.cry_eternal_perishable_compat
-			and pseudorandom("cry_vper" .. (key_append or "") .. G.GAME.round_resets.ante) > 0.7
+			and pseudorandom("cry_vper" .. (key_append or "") .. G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate
 		then
 			ret.perishable = true
 		end
@@ -552,7 +552,7 @@ function cry_get_next_voucher_stickers()
 			G.GAME.modifiers.cry_any_stickers
 			and (
 				G.GAME.modifiers.enable_rentals_in_shop
-				and pseudorandom("cry_vssjr" .. (key_append or "") .. G.GAME.round_resets.ante) > 0.7
+				and pseudorandom("cry_vssjr" .. (key_append or "") .. G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate
 			)
 		)
 	then
@@ -565,7 +565,7 @@ function cry_get_next_voucher_stickers()
 			G.GAME.modifiers.cry_any_stickers
 			and (
 				G.GAME.modifiers.cry_enable_pinned_in_shop
-				and pseudorandom("cry_vpin" .. (key_append or "") .. G.GAME.round_resets.ante) > 0.7
+				and pseudorandom("cry_vpin" .. (key_append or "") .. G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate
 			)
 		)
 	then
@@ -578,8 +578,8 @@ function cry_get_next_voucher_stickers()
 		not G.GAME.modifiers.cry_eternal_perishable_compat
 		and G.GAME.modifiers.enable_banana
 		and G.GAME.modifiers.cry_any_stickers
-		and (pseudorandom("cry_bpbanana" .. (key_append or "") .. G.GAME.round_resets.ante) > 0.7)
-		and (eternal_perishable_poll <= 0.7)
+		and (pseudorandom("cry_bpbanana" .. (key_append or "") .. G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate)
+		and (eternal_perishable_poll > Cryptid_config.StickerOccurRate)
 	then
 		ret.banana = true
 	end
@@ -587,7 +587,7 @@ function cry_get_next_voucher_stickers()
 		G.GAME.modifiers.cry_eternal_perishable_compat
 		and G.GAME.modifiers.enable_banana
 		and G.GAME.modifiers.cry_any_stickers
-		and (pseudorandom("cry_bpbanana" .. (key_append or "") .. G.GAME.round_resets.ante) > 0.7)
+		and (pseudorandom("cry_bpbanana" .. (key_append or "") .. G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate)
 	then
 		ret.banana = true
 	end
@@ -2153,8 +2153,8 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
 		)
 	then
 		card:set_perishable(true)
-		card.ability.perish_tally = G.GAME.perishable_rounds -- set_perishable should be doing this? whatever
-		card.ability.perishable = true
+		-- card.ability.perish_tally = G.GAME.perishable_rounds -- set_perishable should be doing this? whatever
+		-- card.ability.perishable = true
 	end
 	if
 		G.GAME.modifiers.cry_force_sticker == "rental"
@@ -2219,47 +2219,47 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
 		end
 		if (area == G.shop_jokers) or (area == G.pack_cards) then
 			local eternal_perishable_poll = pseudorandom("cry_et" .. (key_append or "") .. G.GAME.round_resets.ante)
-			if G.GAME.modifiers.enable_eternals_in_shop and eternal_perishable_poll > 0.7 then
+			if G.GAME.modifiers.enable_eternals_in_shop and eternal_perishable_poll < Cryptid_config.StickerOccurRate then
 				card:set_eternal(true)
 			end
 			if G.GAME.modifiers.enable_perishables_in_shop then
 				if
 					not G.GAME.modifiers.cry_eternal_perishable_compat
-					and ((eternal_perishable_poll > 0.4) and (eternal_perishable_poll <= 0.7))
+					and ((eternal_perishable_poll >= Cryptid_config.StickerOccurRate) and (eternal_perishable_poll < Cryptid_config.StickerOccurRate * 2))
 				then
 					card:set_perishable(true)
 				end
 				if
 					G.GAME.modifiers.cry_eternal_perishable_compat
-					and pseudorandom("cry_per" .. (key_append or "") .. G.GAME.round_resets.ante) > 0.7
+					and pseudorandom("cry_per" .. (key_append or "") .. G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate
 				then
 					card:set_perishable(true)
 				end
 			end
 			if
 				G.GAME.modifiers.enable_rentals_in_shop
-				and pseudorandom("cry_ssjr" .. (key_append or "") .. G.GAME.round_resets.ante) > 0.7
+				and pseudorandom("cry_ssjr" .. (key_append or "") .. G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate
 			then
 				card:set_rental(true)
 			end
 			if
 				G.GAME.modifiers.cry_enable_pinned_in_shop
-				and pseudorandom("cry_pin" .. (key_append or "") .. G.GAME.round_resets.ante) > 0.7
+				and pseudorandom("cry_pin" .. (key_append or "") .. G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate
 			then
 				card.pinned = true
 			end
 			if
 				not G.GAME.modifiers.cry_eternal_perishable_compat
 				and G.GAME.modifiers.enable_banana
-				and (pseudorandom("cry_banana" .. (key_append or "") .. G.GAME.round_resets.ante) > 0.7)
-				and (eternal_perishable_poll <= 0.7)
+				and (pseudorandom("cry_banana" .. (key_append or "") .. G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate)
+				and (eternal_perishable_poll > Cryptid_config.StickerOccurRate)
 			then
 				card.ability.banana = true
 			end
 			if
 				G.GAME.modifiers.cry_eternal_perishable_compat
 				and G.GAME.modifiers.enable_banana
-				and (pseudorandom("cry_banana" .. (key_append or "") .. G.GAME.round_resets.ante) > 0.7)
+				and (pseudorandom("cry_banana" .. (key_append or "") .. G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate)
 			then
 				card.ability.banana = true
 			end
@@ -2273,7 +2273,7 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
 			if
 				not card.ability.eternal
 				and G.GAME.modifiers.cry_enable_flipped_in_shop
-				and pseudorandom("cry_flip" .. (key_append or "") .. G.GAME.round_resets.ante) > 0.7
+				and pseudorandom("cry_flip" .. (key_append or "") .. G.GAME.round_resets.ante) < Cryptid_config.StickerOccurRate
 			then
 				card.cry_flipped = true
 			end
@@ -2287,7 +2287,7 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
 	if
 		(card.ability.set == "Code")
 		and G.GAME.used_vouchers.v_cry_quantum_computing
-		and pseudorandom("cry_quantum_computing") > 0.7
+		and pseudorandom("cry_quantum_computing") < Cryptid_config.StickerOccurRate
 	then
 		card:set_edition({ negative = true })
 	end

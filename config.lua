@@ -23,4 +23,5 @@ return {
 	["PokerHands"] = true,
 	["Spooky"] = true,
 	["Menu"] = true,
+	["StickerOccurRate"] = 0.2, -- default 0.3
 }
