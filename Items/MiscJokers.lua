@@ -6928,7 +6928,7 @@ local miscitems =  {
 	happyhouse,
 	maximized,
 	potofjokes,
-	queensgambit,
+	-- queensgambit,   -- temporarily removed due to buggy and not fun.
 	wee_fib,
 	compound_interest,
 	whip,
