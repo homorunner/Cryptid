@@ -680,7 +680,7 @@ local ritual = {
 	pos = { x = 5, y = 1 },
 	can_use = function(self, card)
 		--TODO: CCD card compat
-		if #G.hand.highlighted > card.ability.max_highlighted then return false end
+		if #G.hand.highlighted < 1 or #G.hand.highlighted > card.ability.max_highlighted then return false end
 		for _, v in ipairs(G.hand.highlighted) do
 			if v.edition then
 				return false
