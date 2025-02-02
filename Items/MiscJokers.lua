@@ -296,7 +296,7 @@ local wee_fib = {
 	object_type = "Joker",
 	name = "cry-Wee Fibonacci",
 	key = "wee_fib",
-	config = { extra = { mult = 0, mult_mod = 3 } },
+	config = { extra = { mult = 0, mult_mod = 2 } },
 	pos = { x = 1, y = 5 },
 	rarity = 3,
 	cost = 9,
