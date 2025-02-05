@@ -4959,7 +4959,7 @@ local tricksy = {
 	effect = "Cry Type Chips",
 	order = 26,
 	pos = { x = 2, y = 6 },
-	config = { t_chips = 170, type = "Straight Flush" },
+	config = { t_chips = 180, type = "Straight Flush" },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.t_chips, localize(card.ability.type, "poker_hands") } }
 	end,
