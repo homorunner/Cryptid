@@ -349,7 +349,7 @@ local whip = {
 	name = "cry-The WHIP",
 	key = "whip",
 	pos = { x = 5, y = 3 },
-	config = { extra = { Xmult_mod = 0.5, x_mult = 1 } },
+	config = { extra = { Xmult_mod = 0.25, x_mult = 1 } },
 	rarity = 2,
 	cost = 8,
 	order = 15,
