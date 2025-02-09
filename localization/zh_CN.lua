@@ -992,10 +992,9 @@ return {
 			j_cry_biggestm = {
 				name = "超大M",
 				text = {
+					"如果 {C:attention}打出牌型{} 是一个 {C:attention}#2#{}",
 					"{X:mult,C:white} X#1# {} 倍率直到本轮结束",
-					"如果 {C:attention}打出牌型{}",
-					"是一个 {C:attention}#2#{}",
-					"{C:inactive}(当前 {C:attention}#3#{}{C:inactive}){}",
+					"{C:inactive}(当前#3#){}",
 					"{C:inactive,s:0.8}不是胖，只是骨架大。"
 				}
 			},
@@ -3862,7 +3861,7 @@ return {
 			cry_asc_hands = "晋升牌型",
 			cry_p_star = "星星",
 			cry_hooked_ex = "被勾住!",
-			cry_inactive = "Inactive",
+			cry_inactive = "未激活",
 			cry_jolly_ex = "红红火火恍恍惚惚红红火火恍恍惚惚!",
 			cry_m = "M",
 			cry_m_ex = "M!",
@@ -3887,7 +3886,7 @@ return {
 			cry_set_music = "音乐",
 			cry_sobbing = "救救我...",
 			cry_sus_ex = "骗子!",
-			cry_unredeemed = "Unredeemed...",
+			cry_unredeemed = "没有...",
 			k_code = "代码",
 			k_cry_candy = "糖果",
 			k_cry_cursed = "诅咒",
