@@ -3903,7 +3903,7 @@ local code_cards = {
 	automaton,
 	green_seal,
 	source,
-	pointer,
+	-- pointer,
 	cut,
 	blender,
 	python,
